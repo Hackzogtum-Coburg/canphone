@@ -10,24 +10,28 @@ import subprocess
 OUTPUTNAME = "Speaker"
 INPUTNAME = "Mic"
 CARDNAME = "Device"
+PREAMPNAME= "PreAmp"
 
 #f*ck*ng patch for not working alsamixer
 shell_cmd_mic_on = "amixer -c 1 sset Mic unmute cap"
 shell_cmd_mic_off = "amixer -c 1 sset Mic mute nocap"
 
-DEFAULT_VOL_OUT = 70
+DEFAULT_VOL_OUT = 100
+PREAMP_VOL = 60
 DEFAULT_VOL_IN = 70
 
 def getCardIndex(cardName):
     return alsaaudio.cards().index(cardName)
 
 class CanMixer():
-    def __init__(self, cardName=CARDNAME, inName=INPUTNAME, outName=OUTPUTNAME, defVolOut=DEFAULT_VOL_OUT, defVolIn=DEFAULT_VOL_IN):
+    def __init__(self, cardName=CARDNAME, inName=INPUTNAME, outName=OUTPUTNAME, preAmpName=PREAMPNAME, defVolOut=DEFAULT_VOL_OUT, defVolIn=DEFAULT_VOL_IN, preVol=PREAMP_VOL):
         cardindex=getCardIndex(cardName)
         self.mixOut = alsaaudio.Mixer(outName, cardindex=cardindex)
+        self.preAmp = alsaaudio.Mixer(preAmpName, cardindex=cardindex)
         self.mixIn = alsaaudio.Mixer(inName, cardindex=cardindex)
         self.mixOut.setvolume(defVolOut)
         self.mixIn.setvolume(defVolIn)
+        self.preAmp.setvolume(preVol)
         self.mute()
 
     def muteMic(self):
