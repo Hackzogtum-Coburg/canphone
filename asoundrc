@@ -1,0 +1,17 @@
+pcm.!default {
+    type plug 
+    slave.pcm "softvol"
+}
+
+pcm.softvol {
+    type softvol
+    slave {
+	pcm "hw:1,0"
+    }
+    control { 
+	name "PreAmp"
+	card 1
+    }
+    min_dB -2.0
+    max_dB 30.0
+}

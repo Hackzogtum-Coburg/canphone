@@ -20,6 +20,7 @@ apt install rpi.gpio
 - Create extension there
 
 # Configuration
+- Put asoundrc to /home/pi/.asoundrc (use mpv to play an audio file to get alsa recognize the preamp, if it does not work - preamp has to be shown in alsamixer) 
 - Copy baresipconf folder to ~/.baresip
 - Alter files accounts to match your extension credentials
 - Adjust contacts file to match other canphone
