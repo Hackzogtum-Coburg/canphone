@@ -212,7 +212,7 @@ ice_mode		full	# {full,lite}
 #menu_bell		yes
 #redial_attempts	3 # Num or <inf>
 #redial_delay		5 # Delay in seconds
-#ringback_disabled	yes
+ringback_disabled	yes
 #statmode_default	off
 
 # MQTT
